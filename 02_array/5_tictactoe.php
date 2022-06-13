@@ -70,7 +70,7 @@ return false;
 }
 
 function isTie(array $board): bool {
-        return in_array('-', $board) === true;
+        return in_array('-', $board) === true; //isti nestrada Tie
 }
 
 displayBoard($board);
