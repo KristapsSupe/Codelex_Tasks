@@ -26,5 +26,3 @@ for ($i=1; $i <= 110; $i++) {
             echo "<br> ";
     }
 }
-
-// nospiedu no ineta
