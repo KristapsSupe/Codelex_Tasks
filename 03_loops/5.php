@@ -27,5 +27,3 @@ while ($roll) {
         exit;
     }
 }
-
-// ka uztaisit punktu skaitisanu?
