@@ -26,11 +26,11 @@ $board = [
 
 function displayBoard(array $board): void
 {
-    echo "   0  | 1  | 2  \n";
+    echo "    0 | 1 | 2  \n";
     echo "0   {$board[0][0]} | {$board[0][1]}  | {$board[0][2]}  \n";
-    echo "   ---+----+---\n";
+    echo "   ---+---+---\n";
     echo "1   {$board[1][0]} | {$board[1][1]}  | {$board[1][2]}  \n";
-    echo "   ---+----+---\n";
+    echo "   ---+---+---\n";
     echo "2   {$board[2][0]} | {$board[2][1]}  | {$board[2][2]}  \n";
 }
 
@@ -69,37 +69,31 @@ function hasWon(string $player, array $board): bool
 return false;
 }
 
-function isTie(array $board): bool {
-        return in_array('-', $board) === true; //isti nestrada Tie
-}
-
 displayBoard($board);
 
 $turns = 0;
 
-while($turns < 10)
-{
+while($turns <= 8) {
 
-    $position = readline('Enter your position player: '. $currentPlayer  . ' (row, column): ');
+    $position = readline('Enter your position player: ' . $currentPlayer . ' (row, column): ');
     [$x, $y] = explode(' ', $position);
 
     $board[$x][$y] = $currentPlayer;
 
     displayBoard($board);
 
-    if (isTie($board)) {
-        echo "Its a Tie" . PHP_EOL;
+    if (hasWon($currentPlayer, $board)) {
+        echo "Player $currentPlayer won" . PHP_EOL;
         break;
     }
 
-    if (hasWon($currentPlayer, $board)) {
-       echo "Player $currentPlayer won" . PHP_EOL;
-       break;
-    }
 
     $currentPlayer = $currentPlayer == $player1 ? $player2 : $player1;
     $turns++;
+
+
 }
 
-
-
+if (hasWon($currentPlayer, $board) === false && in_array('-', $board) === false) {
+    echo "Its a tie!" . PHP_EOL;
+}
