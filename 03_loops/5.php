@@ -1,19 +1,31 @@
 <?php
+echo "Welcome to Piglet" . PHP_EOL;
 
 $roll = true;
 
-
 while ($roll) {
     $userInput = readline ('Roll the dice (y or n): ');
+    $randomNumber = rand(1, 6);
+    $points = 0;
+    $pointsCount = $points + 2;
+
+
 
     switch ($userInput) {
+
         case 'y':
-            echo 'You rolled ' . rand(1, 6) . PHP_EOL;
+            echo 'You rolled ' . $randomNumber . PHP_EOL;
             break;
 
-        default:
-            echo $roll = false;
-            break;
+        case 'n':
+            echo "You got " . $pointsCount . " points" . PHP_EOL;
+            exit;
+
+    }
+    if ($randomNumber === 1) {
+        echo "You got 0 points"  . PHP_EOL;
+        exit;
     }
 }
-echo "Thanks";
+
+// ka uztaisit punktu skaitisanu?
