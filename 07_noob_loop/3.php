@@ -18,7 +18,7 @@ for($i = 1; $i < $userNumber - 1; $i++)
     echo str_repeat('*',  + 1);
     echo PHP_EOL;
 }
-for($i = 4; $i < 5; $i++)
+for($i = $userNumber; $i <= $userNumber; $i++)
 {
     echo str_repeat('*', $userNumber);
     echo PHP_EOL;
