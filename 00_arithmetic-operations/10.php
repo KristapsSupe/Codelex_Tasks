@@ -45,9 +45,7 @@ switch ($selection) {
         {
             echo "Negative value" . PHP_EOL;
         }
-        {
-            echo circle($pi, $radius) . PHP_EOL;
-        }
+        echo circle($pi, $radius) . PHP_EOL;
         break;
 
     case 2:
@@ -57,9 +55,7 @@ switch ($selection) {
         {
             echo "Negative value" . PHP_EOL;
         }
-        {
-            echo rectangle($length, $width) . PHP_EOL;
-        }
+        echo rectangle($length, $width) . PHP_EOL;
         break;
 
     case 3:
@@ -69,9 +65,7 @@ switch ($selection) {
         {
             echo "Negative value" . PHP_EOL;
         }
-        {
-            echo triangle($base, $height) . PHP_EOL;
-        }
+        echo triangle($base, $height) . PHP_EOL;
         break;
 
     default:
