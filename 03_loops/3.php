@@ -1,19 +1,22 @@
 <?php
 $word = readline ('Enter first word: ');
-echo $word . PHP_EOL;
-
 $word2 = readline ('Enter second word: ');
-echo $word2 . PHP_EOL;;
 
-$output =  $word . "" . $word2 . PHP_EOL;
+$dots = '.';
+$output =  $word . $dots . $word2 . PHP_EOL;
 $length = strlen($output);
-$dots = ".";
-$i = $dots;
+
+$inTheMiddle = 30 - $length;
 
 
-if($length <= 30)
+echo $word;
+
+for ($i = 0; $i <= $inTheMiddle; $i++)
 {
-        echo $word . $i . $word2 . PHP_EOL;
+    echo $dots;
 }
 
-// trukst punktu skaititajs, lai kopejais stringa garums butu 30
+echo $word2 . PHP_EOL;
+
+
+
