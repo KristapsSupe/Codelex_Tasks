@@ -3,9 +3,8 @@
 $userNumber = (int)readline ('Enter number: ');
 
 for($i=1; $i<=$userNumber; $i++) {
-    for($j=1; $j<=$i; $j++)
-    {
-        echo ' ';
+    for ($j = 1; $j <= $i; $j++) {
+        echo 'p';
     }
     for($k=$userNumber; $k>=$i; $k--)
     {
