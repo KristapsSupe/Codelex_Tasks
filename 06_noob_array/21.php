@@ -46,6 +46,4 @@ echo "Mid Voters Voted: "  . count($midVotersVoted) . PHP_EOL;
 echo "Old Voters Total: "  . count($oldVotersTotal) . PHP_EOL;
 echo "Old Voters Voted: "  . count($oldVotersVoted) . PHP_EOL;
 
-//var_dump($youngVotersVoted);
-//var_dump($midVotersVoted);
-//var_dump($oldVotersVoted);
+

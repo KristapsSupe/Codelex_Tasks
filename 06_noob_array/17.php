@@ -5,6 +5,6 @@ function fiveCharactersOrFewerOnly(string $word): string {
     return strlen($word) <= 5;
 }
 
-$wordOverFiveChars = array_filter($words, "fiveCharactersOrFewerOnly");
+$wordsOverFiveChars = array_filter($words, "fiveCharactersOrFewerOnly");
 
-echo implode(', ', $wordOverFiveChars);
+echo implode(', ', $wordsOverFiveChars);

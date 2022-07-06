@@ -9,4 +9,6 @@ $arraySingle = call_user_func_array('array_merge', $arrays);
 
 echo implode(', ', $arraySingle);
 
+var_dump($arraySingle);
+
 

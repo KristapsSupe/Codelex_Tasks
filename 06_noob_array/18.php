@@ -13,6 +13,7 @@ $person = [
     ["name" => "Joey", "age" => 41, "voted" => true],
     ["name" => "Jeff", "age" => 30, "voted" => true],
     ["name" => "Zack", "age" => 19, "voted" => false],
+    ["name" => "Kristaps", "age" => 22, "voted" => true],
 ];
 
 

@@ -1,31 +1,37 @@
 <?php
 
-$namesOnly = [
+$namesAndAgesOnly = [
     [
-        ["Angelina Jolie"],
-        [80],
+        "name" => "Angelina Jolie",
+        "age" => 80,
     ],
     [
-        ["Eric Jones"],
-        [2],
+        "name" => "Eric Jones",
+        "age" => 12,
     ],
     [
-        ["Paris Hilton"],
-        [5],
+        "name" => "Paris Hilton",
+        "age" => 15,
     ],
     [
-        ["Kayne West"],
-        [16],
+        "name" => "Kanye West",
+        "age" => 16,
     ],
     [
-        ["Bob Ziroll"],
-        [100],
+        "name" => "Bob Ziroll",
+        "age" => 100,
     ],
 ];
 
-echo implode(', ', array_map(function ($entry) {
-    return $entry[0];
-}, $namesOnly));
+$personNameAndAge = array_column($namesAndAgesOnly, 'age', 'name');
+
+print_r($personNameAndAge);
+
+//echo implode(', ', $personNameAndAge);
+
+
+
+
 
 
 
