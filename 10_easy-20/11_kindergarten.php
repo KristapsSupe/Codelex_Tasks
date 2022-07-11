@@ -5,26 +5,6 @@
  * Write a function that reverses all the words in a sentence that start with a particular letter.
  */
 
-//$sentence = "First man to walk on the moon";
-//$letter = "m";
-//
-//$splittedSentences = explode(' ', $sentence);
-//
-//foreach ($splittedSentences as $word) {
-//    if (substr($word, 0, 1) === $letter)
-//        echo strrev($word) . " ";
-//    else {
-//        echo $word  . " ";
-//    }
-//}
-
-
-
-
-
-
-
-
 class Kindergarten
 {
 
