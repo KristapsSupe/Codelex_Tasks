@@ -7,14 +7,10 @@
 
 class Clock
 {
-
-    public static function takeOutDoubles(array $attendees): string
+    public static function digitalClock(int $seconds): string
     {
-        $cleanList = array_unique($attendees,);
-        return implode('/ ', array_unique($cleanList));
+        return gmdate("H:i:s", $seconds);
     }
 }
 
-$seconds = 120;
-
-echo Event:: takeOutDoubles($attendees);
+echo Clock:: digitalClock(121);

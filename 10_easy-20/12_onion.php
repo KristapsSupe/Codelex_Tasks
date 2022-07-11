@@ -19,18 +19,45 @@
 ]
  */
 
-$onion = [
+
+class Onion
+{
+    public static function peelTheOnion(array $onion): string
+    {
+        array_pop($onion);
+        array_shift($onion);
+
+
+        for ($i = 0; $i < count($onion); $i++) {
+            array_shift($onion[$i]);
+            array_pop($onion[$i]);
+        }
+        return implode(', ', $onion);
+    }
+}
+
+$onion1 = [
     ["a", "b", "c", "d"],
     ["e", "f", "g", "h"],
     ["i", "j", "k", "l"],
-    ["m", "n", "o", "p"],
+    ["m", "n", "o", "p"]
 ];
 
-unset($onion[0][0], $onion[0][1], $onion[0][2], $onion[0][3]);
-unset($onion[1][0], $onion[1][3]);
-unset($onion[2][0], $onion[2][3]);
-unset($onion[3][0], $onion[3][1], $onion[3][2], $onion[3][3]);
+$onion2 =  [
+    [6, 7, 8, 9, 10],
+    [11, 12, 13, 14, 15],
+    [16, 17, 18, 19, 20],
+    [21, 22, 23, 24, 25],
+    [26, 27, 28, 29, 30],
+    [31, 32, 33, 34, 35],
+    ];
 
+$onion3 = [
+    ["apple", "apple", "apple"],
+    ["apple", "banana", "apple"],
+    ["apple", "apple", "apple"],
+];
 
-echo implode(', ', $onion);
-var_dump($onion);
+echo Onion:: peelTheOnion($onion1) . PHP_EOL;
+echo Onion:: peelTheOnion($onion2) . PHP_EOL;
+echo Onion:: peelTheOnion($onion3) . PHP_EOL;
