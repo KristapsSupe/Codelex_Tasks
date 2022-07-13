@@ -1,6 +1,6 @@
 <?php
 
-class Weapon
+class Element
 {
     private string $name;
     private array $weakPoints = [];
@@ -20,23 +20,23 @@ class Weapon
         return $this->weakPoints;
     }
 
-    public function addWeakPoint(Weapon $weapon): void
+    public function addWeakPoint(Element $element): void
     {
-        $this->weakPoints[] = $weapon;
+        $this->weakPoints[] = $element;
     }
 
-    public function addWeakPoints(array $weapons): void
+    public function addWeakPoints(array $elements): void
     {
-        foreach ($weapons as $weapon)
+        foreach ($elements as $element)
         {
-            if (! $weapon instanceof Weapon) continue;
-            $this->addWeakPoint($weapon);
+            if (! $element instanceof Element) continue;
+            $this->addWeakPoint($element);
         }
     }
 
-    public function isWeakAgainst(Weapon $weapon): bool
+    public function isWeakAgainst(Element $element): bool
     {
-        return in_array($weapon, $this->weakPoints);
+        return in_array($element, $this->weakPoints);
     }
 }
 
@@ -44,7 +44,7 @@ class Weapon
 class Player
 {
     private string $name;
-    private Weapon $selection;
+    private Element $selection;
 
     public function __construct(string $name)
     {
@@ -56,12 +56,12 @@ class Player
         return $this->name;
     }
 
-    public function getSelection(): Weapon
+    public function getSelection(): Element
     {
         return $this->selection;
     }
 
-    public function setSelection(Weapon $selection): void
+    public function setSelection(Element $selection): void
     {
         $this->selection = $selection;
     }
@@ -69,13 +69,13 @@ class Player
 
 class Game
 {
-    private array $weapons = [];
+    private array $elements = [];
 
     private Player $attacker;
     private Player $defender;
 
-    private Weapon $attackerWeapon;
-    private Weapon $defenderWeapon;
+    private Element $attackerElement;
+    private Element $defenderElement;
 
     private ?Player $winner = null;
 
@@ -89,10 +89,10 @@ class Game
 
     private function setup(): void
     {
-        $this->weapons = [
-            $rock = new Weapon('Rock'),
-            $paper = new Weapon('Paper'),
-            $scissors = new Weapon('Scissors'),
+        $this->elements = [
+            $rock = new Element('Rock'),
+            $paper = new Element('Paper'),
+            $scissors = new Element('Scissors'),
         ];
 
         $rock->addWeakPoints([$paper]);
@@ -102,8 +102,8 @@ class Game
 
     public function determineResult(): void
     {
-        $this->attackerWeapon = $this->attacker->getSelection();
-        $this->defenderWeapon = $this->defender->getSelection();
+        $this->attackerElement = $this->attacker->getSelection();
+        $this->defenderElement = $this->defender->getSelection();
 
         if ($this->attacker->getSelection() === $this->defender->getSelection()) {
             return;
@@ -121,19 +121,19 @@ class Game
         return $this->winner;
     }
 
-    public function getWeapons(): array
+    public function getElements(): array
     {
-        return $this->weapons;
+        return $this->elements;
     }
 
-    public function getAttackerWeapon(): Weapon
+    public function getAttackerElement(): Element
     {
-        return $this->attackerWeapon;
+        return $this->attackerElement;
     }
 
-    public function getDefenderWeapon(): Weapon
+    public function getDefenderElement(): Element
     {
-        return $this->defenderWeapon;
+        return $this->defenderElement;
     }
 
     public function getAttacker(): Player
@@ -179,13 +179,13 @@ class GameSet
             $game = new Game($this->attacker, $this->defender);
             $this->games[] = $game;
 
-            $weapons = $game->getWeapons();
+            $elements = $game->getElements();
 
-            $attackerSelectedWeapon = array_rand($weapons);
-            $defenderSelectedWeapon = array_rand($weapons);
+            $attackerSelectedElement = array_rand($elements);
+            $defenderSelectedElement = array_rand($elements);
 
-            $this->attacker->setSelection($weapons[$attackerSelectedWeapon]);
-            $this->defender->setSelection($weapons[$defenderSelectedWeapon]);
+            $this->attacker->setSelection($elements[$attackerSelectedElement]);
+            $this->defender->setSelection($elements[$defenderSelectedElement]);
 
             $game->determineResult();
 
@@ -266,7 +266,7 @@ echo "{$game1->getAttacker()->getName()} ({$game1->getAttackerPoints()}) : ({$ga
 echo "Winner: " . $game1->getWinner()->getName() . PHP_EOL;
 foreach ($game1->getGames() as $key => $game) {
     $index = $key + 1;
-    echo "[Game #{$index}] {$game1->getAttacker()->getName()} had {$game->getAttackerWeapon()->getName()} : {$game1->getDefender()->getName()} had {$game->getDefenderWeapon()->getName()}" . PHP_EOL;
+    echo "[Game #{$index}] {$game1->getAttacker()->getName()} had {$game->getAttackerElement()->getName()} : {$game1->getDefender()->getName()} had {$game->getDefenderElement()->getName()}" . PHP_EOL;
 }
 echo PHP_EOL;
 
@@ -274,7 +274,7 @@ echo "{$game2->getAttacker()->getName()} ({$game2->getAttackerPoints()}) : ({$ga
 echo "Winner: " . $game2->getWinner()->getName() . PHP_EOL;
 foreach ($game2->getGames() as $key => $game) {
     $index = $key + 1;
-    echo "[Game #{$index}] {$game2->getAttacker()->getName()} had {$game->getAttackerWeapon()->getName()} : {$game2->getDefender()->getName()} had {$game->getDefenderWeapon()->getName()}" . PHP_EOL;
+    echo "[Game #{$index}] {$game2->getAttacker()->getName()} had {$game->getAttackerElement()->getName()} : {$game2->getDefender()->getName()} had {$game->getDefenderElement()->getName()}" . PHP_EOL;
 }
 echo PHP_EOL;
 
@@ -282,7 +282,7 @@ echo "{$game3->getAttacker()->getName()} ({$game3->getAttackerPoints()}) : ({$ga
 echo "Winner: " . $game3->getWinner()->getName() . PHP_EOL;
 foreach ($game3->getGames() as $key => $game) {
     $index = $key + 1;
-    echo "[Game #{$index}] {$game3->getAttacker()->getName()} had {$game->getAttackerWeapon()->getName()} : {$game3->getDefender()->getName()} had {$game->getDefenderWeapon()->getName()}" . PHP_EOL;
+    echo "[Game #{$index}] {$game3->getAttacker()->getName()} had {$game->getAttackerElement()->getName()} : {$game3->getDefender()->getName()} had {$game->getDefenderElement()->getName()}" . PHP_EOL;
 }
 echo PHP_EOL;
 
@@ -290,7 +290,7 @@ echo "{$game4->getAttacker()->getName()} ({$game4->getAttackerPoints()}) : ({$ga
 echo "Winner: " . $game4->getWinner()->getName() . PHP_EOL;
 foreach ($game4->getGames() as $key => $game) {
     $index = $key + 1;
-    echo "[Game #{$index}] {$game4->getAttacker()->getName()} had {$game->getAttackerWeapon()->getName()} : {$game4->getDefender()->getName()} had {$game->getDefenderWeapon()->getName()}" . PHP_EOL;
+    echo "[Game #{$index}] {$game4->getAttacker()->getName()} had {$game->getAttackerElement()->getName()} : {$game4->getDefender()->getName()} had {$game->getDefenderElement()->getName()}" . PHP_EOL;
 }
 echo PHP_EOL;
 
@@ -301,7 +301,7 @@ echo "{$game5->getAttacker()->getName()} ({$game5->getAttackerPoints()}) : ({$ga
 echo "Winner: " . $game5->getWinner()->getName() . PHP_EOL;
 foreach ($game5->getGames() as $key => $game) {
     $index = $key + 1;
-    echo "[Game #{$index}] {$game5->getAttacker()->getName()} had {$game->getAttackerWeapon()->getName()} : {$game5->getDefender()->getName()} had {$game->getDefenderWeapon()->getName()}" . PHP_EOL;
+    echo "[Game #{$index}] {$game5->getAttacker()->getName()} had {$game->getAttackerElement()->getName()} : {$game5->getDefender()->getName()} had {$game->getDefenderElement()->getName()}" . PHP_EOL;
 }
 echo PHP_EOL;
 
@@ -309,7 +309,7 @@ echo "{$game6->getAttacker()->getName()} ({$game6->getAttackerPoints()}) : ({$ga
 echo "Winner: " . $game6->getWinner()->getName() . PHP_EOL;
 foreach ($game6->getGames() as $key => $game) {
     $index = $key + 1;
-    echo "[Game #{$index}] {$game6->getAttacker()->getName()} had {$game->getAttackerWeapon()->getName()} : {$game6->getDefender()->getName()} had {$game->getDefenderWeapon()->getName()}" . PHP_EOL;
+    echo "[Game #{$index}] {$game6->getAttacker()->getName()} had {$game->getAttackerElement()->getName()} : {$game6->getDefender()->getName()} had {$game->getDefenderElement()->getName()}" . PHP_EOL;
 }
 echo PHP_EOL;
 
@@ -320,6 +320,6 @@ echo "{$game7->getAttacker()->getName()} ({$game7->getAttackerPoints()}) : ({$ga
 echo "Winner: " . $game7->getWinner()->getName() . PHP_EOL;
 foreach ($game7->getGames() as $key => $game) {
     $index = $key + 1;
-    echo "[Game #{$index}] {$game7->getAttacker()->getName()} had {$game->getAttackerWeapon()->getName()} : {$game7->getDefender()->getName()} had {$game->getDefenderWeapon()->getName()}" . PHP_EOL;
+    echo "[Game #{$index}] {$game7->getAttacker()->getName()} had {$game->getAttackerElement()->getName()} : {$game7->getDefender()->getName()} had {$game->getDefenderElement()->getName()}" . PHP_EOL;
 }
 echo PHP_EOL;
