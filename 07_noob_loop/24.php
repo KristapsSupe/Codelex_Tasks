@@ -1,10 +1,9 @@
 <?php
 $n = readline("Enter number: ");
 
-$centerLines = $n;
 
 echo str_repeat('.', $n / 2);
-echo str_repeat('#', $centerLines);
+echo str_repeat('#', $n);
 echo str_repeat('.', $n / 2);
 echo PHP_EOL;
 
